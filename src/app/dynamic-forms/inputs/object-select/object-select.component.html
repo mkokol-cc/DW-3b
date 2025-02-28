@@ -1,0 +1,8 @@
+<mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select [(ngModel)]="selectedId">
+      @for (obj of options; track obj) {
+        <mat-option [value]="obj.value">{{obj.label}}</mat-option>
+      }
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,16 @@
+<form>
+    <mat-form-field class="w-100">
+      <mat-label>Number</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             [formControl]="control"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (obj of filteredOptions | async; track obj) {
+          <mat-option [value]="obj.label">{{obj.label}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+</form>

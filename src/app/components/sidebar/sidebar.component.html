@@ -1,0 +1,37 @@
+<div class="d-flex flex-column w-100 h-100">
+    <div>
+        LOGO
+    </div>
+    <div class="flex-grow-1">
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="'gestion/cliente'" class="text-secondary w-100 justify-content-start" 
+                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Clientes</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="'gestion/paciente'" class="text-secondary w-100 justify-content-start" 
+                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Pacientes</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="'documentos'" class="text-secondary w-100 justify-content-start" 
+                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Documentos</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="'gestion/tipo-estudio'" class="text-secondary w-100 justify-content-start" 
+                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Tipo de Estudio</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="'gestion/usuario'" class="text-secondary w-100 justify-content-start" 
+                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Usuarios</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="'conclusion'" class="text-secondary w-100 justify-content-start" 
+                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Generar Conclusion</button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+        footer
+    </div>
+</div>

@@ -1,0 +1,85 @@
+@if(form){
+    <form [formGroup]="form">
+
+        <mat-grid-list cols="4" rowHeight="100px">
+            @for (conf of formFieldConfigurations; track conf) {
+                <mat-grid-tile
+                [colspan]="conf.col"
+                [rowspan]="conf.row">
+
+                @if(conf.type == 'string' || conf.type == 'email' || conf.type == 'number'){
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ conf.formFieldLabel }}</mat-label>
+                        <input matInput formControlName="{{conf.formControlName}}" type="{{conf.formFieldType}}"/>
+                        @if (form.get(conf.formControlName) && form.get(conf.formControlName)!.invalid) {
+                            <mat-error>{{conf.errorMessage}}</mat-error>
+                        }
+                    </mat-form-field>
+                }
+                @if(conf.type == 'date'){
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ conf.formFieldLabel }}</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="{{conf.formControlName}}" />
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                }
+                @if(conf.type == 'telefono'){
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>telefono</mat-label>
+                        <input matInput formControlName="{{conf.formControlName}}" type="number"><!--type="tel"-->
+                        <!--<example-tel-input></example-tel-input>-->
+                        <mat-icon matSuffix>phone</mat-icon>
+                        <mat-hint>Include area code</mat-hint>
+                        @if (form.get(conf.formControlName) && form.get(conf.formControlName)!.invalid) {
+                            <mat-error>{{conf.errorMessage}}</mat-error>
+                        }
+                    </mat-form-field>
+                }
+                @if(conf.type == 'boolean'){
+                    <section>
+                        <mat-checkbox formControlName="{{conf.formControlName}}">{{ conf.formFieldLabel }}</mat-checkbox>
+                    </section>
+                }
+
+
+                @if(conf.type == 'object'){
+<!--
+                    @if(conf.relationToObject=='one'){
+                        @if(conf.typeRelationToObject == 'select'){
+                            <div class="w-100 d-block">
+                                <h4>{{conf.formFieldLabel}}</h4>
+                                <app-input-object-select [instance]="conf.instanceToObject!" [parentFormControlName]="conf.formControlName"></app-input-object-select>
+                            </div>
+                        }
+                        @if(conf.typeRelationToObject == 'autocomplete'){
+                            <div class="w-100 d-block">
+                                <h4>{{conf.formFieldLabel}}</h4>
+                                <app-input-object-autocomplete [instance]="conf.instanceToObject!" [parentFormControlName]="conf.formControlName"></app-input-object-autocomplete>
+                            </div>
+                        }
+                        @if(conf.typeRelationToObject == 'subform'){
+                            <div class="w-100 d-block">
+                                <h4>{{conf.formFieldLabel}}</h4>
+                                <app-form [data]="conf.instanceToObject!" [type]="'subform'" [parentFormControlName]="conf.formControlName"></app-form>
+                            </div>
+                        }
+                    }
+
+                    @if(conf.relationToObject=='many'){
+                        <app-input-many-object [instance]="conf.instanceToObject!" [type]="'form'"></app-input-many-object>
+                    }-->
+                }
+
+                </mat-grid-tile>
+            }
+        </mat-grid-list>
+        <!--
+        @if(type!=='subform'){
+            <button mat-raised-button color="primary" [disabled]="!enableSubmit()" (click)="onSubmit()"><!-[disabled]="!form.valid"->
+                Guardar
+            </button>
+        }-->
+    </form>       
+}

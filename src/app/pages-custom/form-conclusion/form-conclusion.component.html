@@ -1,0 +1,55 @@
+<mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="true">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <p>SELECCIONA LOS ARCHIVOS QUE QUIERAS</p>
+            <!--<app-file-selector></app-file-selector>-->
+            <mat-form-field>
+                <mat-label>Cliente</mat-label>
+                <mat-select>
+                  @for (food of foods; track food) {
+                    <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Paciente</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       aria-label="Number"
+                       matInput
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{option}}</mat-option>
+                  }
+                </mat-autocomplete>
+              </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Continuar</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="conclusionForm" [editable]="true">
+        <form [formGroup]="conclusionForm">
+            <ng-template matStepLabel>Conclusion</ng-template>
+            <mat-form-field>
+                <mat-label>Conclusion</mat-label>
+                <textarea matInput formControlName="conclusion" placeholder="Ex. 1 Main St, New York, NY"></textarea>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Listo!</ng-template>
+        <p>aca podes visaulizar el pdf</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>

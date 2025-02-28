@@ -1,0 +1,51 @@
+<!--
+<p>many-object works!</p>
+<p>tomany: autocomplete | select | form </p>
+obtener todos los Objetos segun el tipo
+@if(type=='form'){
+    hacer el form como se hace en type:any o en to-one
+    boton de agregar
+}
+@if(type=='select'){
+    obtener todos los objetos
+    boton de agregar
+}
+@if(type=='autocomplete'){
+    obtener todos los objetos que cumplan con el search de autocomplete
+    boton de agregar
+}
+una vez obtenido entonces agregarlo a una tabla
+-->
+@if(instance){
+    <app-subform #subform [data]="instance"></app-subform><!--[type]="'subform'"-->
+    <button mat-raised-button color="primary" (click)="getValue()" type="button">GetValue</button>
+    <!--{{list | json}}-->
+    <div>
+        <table mat-table [dataSource]="dataSource" class="border">
+    
+            <!-- Dynamic Column Definitions -->
+            @for (column of displayedColumns; track column) {
+                @if(column!=='actions'){
+                    <ng-container [matColumnDef]="column">
+                        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+                        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+                    </ng-container>
+                }
+                @else{
+                    <ng-container [matColumnDef]="column">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button color="primary" type="button" (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+                        </td>
+                    </ng-container>
+                }
+            }
+        
+            <!-- Header Row -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        
+            <!-- Data Row -->
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+}
