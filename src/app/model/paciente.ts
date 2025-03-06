@@ -4,6 +4,7 @@ import { FormProvider } from "../dynamic-forms/interfaces/form-provider";
 import { OptionElement } from "../dynamic-forms/interfaces/option-element";
 import { Persistable } from "../dynamic-forms/persistable";
 import { ApiService } from "../dynamic-forms/services/api.service";
+import { Cliente } from "./cliente";
 
 export class Paciente extends Persistable<Paciente> implements FormProvider{
 
@@ -15,6 +16,8 @@ export class Paciente extends Persistable<Paciente> implements FormProvider{
     telefono?: number;
     password?: string;
 
+    cliente?:Cliente;
+
     constructor(apiService: ApiService, data?: any) {
         super('/api/pacientes', apiService);
         if (data) {
@@ -25,13 +28,17 @@ export class Paciente extends Persistable<Paciente> implements FormProvider{
           this.correoElectronico = data.correoElectronico;
           this.telefono = data.telefono;
           this.password = data.password;
+          this.cliente = data.cliente;
         }
     }  
-    getId(): string | number {
+    toSelectData() {
         throw new Error("Method not implemented.");
     }
+    getId(): string | number {
+        return this.id!
+    }
     getInstancedObjects(item:any): any {
-        throw new Error("Method not implemented.");
+        return new Paciente(this.getApiService(),item);
     }
 
     anyToOption(item: any): OptionElement {

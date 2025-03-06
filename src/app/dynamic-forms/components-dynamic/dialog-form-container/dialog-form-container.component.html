@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>{{data.title}}</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography dialog-form-content">
     <app-form [data]="data.instance" [type]="data.type" (isSuccess)="closeDialog($event)"></app-form>
 </mat-dialog-content>
 <!--

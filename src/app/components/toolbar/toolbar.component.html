@@ -1,4 +1,5 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="justify-content-between">
+  <!--
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
@@ -10,4 +11,16 @@
     <button mat-icon-button class="example-icon" (click)="endSession()" aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
     </button>
+  -->
+    <h1><b>Panel de Administración 3B-Medical</b></h1>
+    <mat-chip-set>
+      <mat-chip class="bg-light">
+        <div matChipAvatar class="bg-success rounded-circle"></div>
+        Licencia Activa (12/12/2025)
+      </mat-chip>
+      <mat-chip class="bg-light">
+        <mat-icon matChipAvatar >question_mark</mat-icon>
+        Contactar con Soporte
+      </mat-chip>
+    </mat-chip-set>
 </mat-toolbar>

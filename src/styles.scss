@@ -1,4 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+// Define la tipografía personalizada usando Rubik
+$my-custom-typography: mat.define-typography-config(
+  $font-family: 'Rubik, sans-serif',
+);
+
+// Define la paleta primary usando el color por defecto de warn
+$my-primary-palette: mat.define-palette(mat.$teal-palette);
+
+// Define la paleta warn usando el color por defecto de primary
+$my-warn-palette: mat.define-palette(mat.$deep-orange-palette);
+
+// Define el tema personalizado intercambiando primary y warn
+$my-custom-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary-palette,
+    accent: mat.define-palette(mat.$teal-palette),
+    warn: $my-warn-palette,
+  ),
+  typography: $my-custom-typography,
+  //typography: mat.define-typography-config(),
+));
+
+// Aplica el tema a todos los componentes de Angular Material
+@include mat.all-component-themes($my-custom-theme);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+
+
+.mdc-evolution-chip-set__chips{
+  justify-content: center;
+}

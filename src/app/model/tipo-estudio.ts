@@ -17,6 +17,9 @@ export class TipoEstudio extends Persistable<TipoEstudio> implements FormProvide
           this.nombre = data.nombre;
         }
     }
+    toSelectData() {
+        throw new Error("Method not implemented.");
+    }
     getId(): string | number {
         return this.id!
     }

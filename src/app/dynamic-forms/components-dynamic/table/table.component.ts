@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { FormProvider } from '../../interfaces/form-provider';
@@ -12,6 +12,10 @@ import { ApiService } from '../../services/api.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogFormContainerComponent } from '../dialog-form-container/dialog-form-container.component';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog.component';
+import { FilteringComponent } from '../filtering/filtering.component';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { Usuario } from '../../../model/usuario';
+import { Cliente } from '../../../model/cliente';
 
 
 @Component({
@@ -23,7 +27,9 @@ import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confi
     MatButtonModule,
     MatIconModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    FilteringComponent,
+    PaginationComponent
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
@@ -35,8 +41,12 @@ export class TableComponent{
   private routeSub!: Subscription;
   formProviderInstance?: Persistable<any> & FormProvider
   tableListObjects?:any[];
+  title?:string;
+  @ViewChild(PaginationComponent) pagination!: PaginationComponent;
 
-  constructor(private router:Router, private route: ActivatedRoute, private apiService:ApiService, public dialog: MatDialog) {
+  constructor(private router:Router, private route: ActivatedRoute, private apiService:ApiService, public dialog: MatDialog,
+    private cdr: ChangeDetectorRef
+  ) {
     this.routeSub = this.route.paramMap.subscribe(params => {
       this.entity = params.get('entity');
       console.log('Entity cambió:', this.entity);
@@ -55,6 +65,8 @@ export class TableComponent{
     if(this.formProviderInstance){
       if(id && type=="edit"){
         this.formProviderInstance?.getById(id).subscribe(obj=>{
+          console.log("OBJETO EXTRAIDO POR ID:")
+          console.log(obj)
           const dialogRef = this.dialog.open(DialogFormContainerComponent, {
             data: {instance: this.formProviderInstance?.getInstancedObjects(obj), title: titulo, type: type},
           });
@@ -99,35 +111,41 @@ export class TableComponent{
    * Set dynamic columns and data
    */
   setTableData(data: any[]): void {
-    if (data && data.length > 0) {
-      // Get columns dynamically from keys of the first object
-      this.displayedColumns = Object.keys(data[0]);
-      this.displayedColumns.push('actions')
-      console.log(this.displayedColumns)
-
-      // Set the data source
-      this.dataSource.data = data;
-    }
+    this.displayedColumns = (data.length > 0) ? Object.keys(data[0]) : Object.keys(this.formProviderInstance?.toTableData());
+    this.displayedColumns.push('actions')
+    console.log(this.displayedColumns)
+    // Set the data source
+    this.dataSource.data = data;
   }
 
   setFormProviderInstance(entity:string){
     switch (entity) {
       case 'tipo-estudio':
         this.formProviderInstance = new TipoEstudio(this.apiService);
+        this.title = "Tipo de Estudio"
         break;
-    
+      case 'usuario':
+        this.formProviderInstance = new Usuario(this.apiService);
+        this.title = "Usuarios"
+        break;
+      case 'cliente':
+        this.formProviderInstance = new Cliente(this.apiService);
+        this.title = "Clientes"
+        break;
       default:
         break;
     }
+    this.dataSource.data = [];
+    this.cdr.detectChanges();
   }
 
   getAllObjects(){
-    this.formProviderInstance?.getAll({}).subscribe(obj=>{
-      console.log(obj)
-      this.tableListObjects = obj.map((item: any) => this.formProviderInstance?.getInstancedObjects(item).toTableData());
-      console.log(this.tableListObjects)
-      this.setTableData(this.tableListObjects)
-    })
+    this.pagination.getAllObjects()
+  }
+
+  reciveDataTable(dataTable:any){
+    this.tableListObjects = dataTable
+    this.setTableData(dataTable)
   }
 
 

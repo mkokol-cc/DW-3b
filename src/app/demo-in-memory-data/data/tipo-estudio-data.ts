@@ -1,14 +1,47 @@
-import { FormGroup } from "@angular/forms";
-import { Observable } from "rxjs";
-import { FormFieldConfiguration } from "../../dynamic-forms/interfaces/form-field-configuration";
-import { OptionElement } from "../../dynamic-forms/interfaces/option-element";
-import { TipoEstudio } from "../../model/tipo-estudio";
-
 export const TIPO_ESTUDIO: any[] = [
-    {id: '1', nombre: 'asdasdasd'},
-    {id: '2', nombre: 'zxczxczxc'},
-    {id: '3', nombre: 'yoyuoyyouo'},
-    {id: '4', nombre: 'kjhkhjkhjk'},
-    {id: '5', nombre: 'bnmbnmbnm'},
-    {id: '6', nombre: 'uryrtutru'},
+    { id: '1', nombre: 'Psicologia' },
+    { id: '2', nombre: 'zxczxczxc' },
+    { id: '3', nombre: 'yoyuoyyouo' },
+    { id: '4', nombre: 'kjhkhjkhjk' },
+    { id: '5', nombre: 'bnmbnmbnm' },
+    { id: '6', nombre: 'uryrtutru' },
+
+    /*
+    { id: '1', nombre: 'asdasdasd' },
+    { id: '2', nombre: 'zxczxczxc' },
+    { id: '3', nombre: 'yoyuoyyouo' },
+    { id: '4', nombre: 'kjhkhjkhjk' },
+    { id: '5', nombre: 'bnmbnmbnm' },
+    { id: '6', nombre: 'uryrtutru' },
+    { id: '7', nombre: 'qweqweqwe' },
+    { id: '8', nombre: 'rtyrtyrty' },
+    { id: '9', nombre: 'uiouiopui' },
+    { id: '10', nombre: 'ghjghjghj' },
+    { id: '11', nombre: 'lkjlkjlkj' },
+    { id: '12', nombre: 'zxvzxvzxv' },
+    { id: '13', nombre: 'nmnmnmnmn' },
+    { id: '14', nombre: 'poipoipoi' },
+    { id: '15', nombre: 'asdqwezxc' },
+    { id: '16', nombre: 'rtyuiopkj' },
+    { id: '17', nombre: 'mnbvcxzlk' },
+    { id: '18', nombre: 'qwertypoi' },
+    { id: '19', nombre: 'zxcvbnmkj' },
+    { id: '20', nombre: 'lkjhgfdsa' },
+    { id: '21', nombre: 'poiuytrew' },
+    { id: '22', nombre: 'mnbvcxzqw' },
+    { id: '23', nombre: 'asdfghjkl' },
+    { id: '24', nombre: 'zxcvbnmpo' },
+    { id: '25', nombre: 'qwertyuio' },
+    { id: '26', nombre: 'lkjhgfdsq' },
+    { id: '27', nombre: 'poiuytrez' },
+    { id: '28', nombre: 'mnbvcxzas' },
+    { id: '29', nombre: 'qazwsxedc' },
+    { id: '30', nombre: 'rfvtgbyhn' },
+    { id: '31', nombre: 'ujmikolpq' },
+    { id: '32', nombre: 'wsxedcrfv' },
+    { id: '33', nombre: 'tgbyhnujm' },
+    { id: '34', nombre: 'ikolpqazw' },
+    { id: '35', nombre: 'sxedcrfvt' },
+    { id: '36', nombre: 'gbyhnujmi' },
+    { id: '37', nombre: 'kolpqazws' },*/
 ]

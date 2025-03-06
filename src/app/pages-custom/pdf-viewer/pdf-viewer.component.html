@@ -1,3 +1,10 @@
-<div class="h-100 w-100 bg-warning">
-   ACA VA EL PDF 
+<div class="text-center h-100 w-100">
+   <pdf-viewer [src]="pdfSrc"
+   [render-text]="true"
+   [original-size]="false"
+   class="w-100 d-block"
+   style="height: 400px;"
+   [show-borders]="true"
+   ></pdf-viewer>
+   <button mat-raised-button color="primary" (click)="download()" class="my-2"><mat-icon>download</mat-icon> Descargar</button>   
 </div>

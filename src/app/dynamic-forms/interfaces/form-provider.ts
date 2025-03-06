@@ -10,6 +10,7 @@ export interface FormProvider {
     getListUrl(): unknown;
     getSubformGroupForm(): FormGroup<any>;
     toTableData(): any;
+    toSelectData(): any;
     toSubformTableData(): any;
     getEditGroupForm(): FormGroup;
     getCreateGroupForm():FormGroup;

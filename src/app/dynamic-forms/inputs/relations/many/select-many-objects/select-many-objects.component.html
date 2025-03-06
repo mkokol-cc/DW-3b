@@ -1,0 +1,8 @@
+<mat-form-field>
+    <mat-label>Toppings</mat-label>
+    <mat-select [formControl]="toppings" multiple>
+        @for (o of options; track o) {
+            <mat-option [value]="o.value">{{o.label}}</mat-option>
+        }
+    </mat-select>
+</mat-form-field>

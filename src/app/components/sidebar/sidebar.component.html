@@ -1,37 +1,39 @@
-<div class="d-flex flex-column w-100 h-100">
-    <div>
-        LOGO
+<div class="d-flex flex-column w-100 h-100" style="background-color: #009688;">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+        <div class="text-light"><b>LOGO</b></div>
     </div>
     <div class="flex-grow-1">
         <mat-list role="list">
             <mat-list-item role="listitem">
-                <button mat-button [routerLink]="'gestion/cliente'" class="text-secondary w-100 justify-content-start" 
-                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Clientes</button>
+                <button mat-flat-button [routerLink]="'gestion/cliente'" class="text-secondary w-100 justify-content-start bg-light" 
+                routerLinkActive="text-dark"><mat-icon>business_center</mat-icon>Clientes</button>
             </mat-list-item>
             <mat-list-item role="listitem">
-                <button mat-button [routerLink]="'gestion/paciente'" class="text-secondary w-100 justify-content-start" 
-                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Pacientes</button>
+                <button mat-flat-button [routerLink]="'gestion/paciente'" class="text-secondary w-100 justify-content-start bg-light" 
+                routerLinkActive="text-dark"><mat-icon>group</mat-icon>Pacientes</button>
             </mat-list-item>
             <mat-list-item role="listitem">
-                <button mat-button [routerLink]="'documentos'" class="text-secondary w-100 justify-content-start" 
-                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Documentos</button>
+                <button mat-flat-button [routerLink]="'documentos'" class="text-secondary w-100 justify-content-start bg-light" 
+                routerLinkActive="text-dark"><mat-icon>picture_as_pdf</mat-icon>Documentos</button>
             </mat-list-item>
             <mat-list-item role="listitem">
-                <button mat-button [routerLink]="'gestion/tipo-estudio'" class="text-secondary w-100 justify-content-start" 
-                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Tipo de Estudio</button>
+                <button mat-flat-button [routerLink]="'gestion/tipo-estudio'" class="text-secondary w-100 justify-content-start bg-light" 
+                routerLinkActive="text-dark"><mat-icon>monitor_heart</mat-icon>Tipo de Estudio</button>
             </mat-list-item>
             <mat-list-item role="listitem">
-                <button mat-button [routerLink]="'gestion/usuario'" class="text-secondary w-100 justify-content-start" 
-                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Usuarios</button>
+                <button mat-flat-button [routerLink]="'gestion/usuario'" class="text-secondary w-100 justify-content-start bg-light" 
+                routerLinkActive="text-dark"><mat-icon>medical_information</mat-icon>Usuarios</button>
             </mat-list-item>
             <mat-list-item role="listitem">
-                <button mat-button [routerLink]="'conclusion'" class="text-secondary w-100 justify-content-start" 
-                routerLinkActive="text-dark" color="primary"><mat-icon>more_vert</mat-icon>Generar Conclusion</button>
+                <button mat-flat-button [routerLink]="'conclusion'" class="text-secondary w-100 justify-content-start bg-light" 
+                routerLinkActive="text-dark"><mat-icon>emergency</mat-icon>Generar Conclusión</button>
             </mat-list-item>
         </mat-list>
     </div>
     <mat-divider></mat-divider>
-    <div>
-        footer
+    <div class="p-4 text-center text-light">
+        <p class="m-0 "><b>Usuario:</b> ADMIN</p>
+        <p><b>Rol:</b> Administrador</p>
+        <button mat-flat-button color="warn"><mat-icon>power_settings_new</mat-icon>Cerrar Sesión</button>
     </div>
 </div>

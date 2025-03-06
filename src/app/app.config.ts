@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loaderInterceptor } from './interceptors/loader.interceptor';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './demo-in-memory-data/in-memory-data.service';
+import { alertInterceptor } from './interceptors/alert.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(), 
     provideHttpClient(
       withInterceptors(
-        [loaderInterceptor/*,messageInterceptor,authInterceptor*/]
+        [alertInterceptor,loaderInterceptor/*,messageInterceptor,authInterceptor*/]
       )
     ),
     importProvidersFrom(

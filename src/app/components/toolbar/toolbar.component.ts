@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatChipsModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })

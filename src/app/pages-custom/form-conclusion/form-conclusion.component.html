@@ -1,55 +1,70 @@
 <mat-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup" [editable]="true">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <p>SELECCIONA LOS ARCHIVOS QUE QUIERAS</p>
-            <!--<app-file-selector></app-file-selector>-->
-            <mat-form-field>
-                <mat-label>Cliente</mat-label>
-                <mat-select>
-                  @for (food of foods; track food) {
-                    <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-                  }
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Paciente</mat-label>
-                <input type="text"
-                       placeholder="Pick one"
-                       aria-label="Number"
-                       matInput
-                       [formControl]="myControl"
-                       [matAutocomplete]="auto">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option">{{option}}</mat-option>
-                  }
-                </mat-autocomplete>
-              </mat-form-field>
+    <mat-step [stepControl]="formPaso1" [editable]="true">
+        <form [formGroup]="formPaso1">
+            <ng-template matStepLabel>Paciente</ng-template>
+            <div class="text-center my-4">
+                <mat-form-field class="w-100">
+                    <mat-label>Cliente</mat-label>
+                    <mat-select formControlName="cliente">
+                      @for (c of clientes; track c) {
+                        <mat-option [value]="c">{{c.nombre}}</mat-option>
+                      }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Paciente</mat-label>
+                    <input type="text"
+                           placeholder="Pick one"
+                           matInput
+                           formControlName="paciente"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+                      @for (paciente of filteredOptions | async; track paciente) {
+                        <mat-option [value]="paciente">{{paciente.apellido}}, {{paciente.nombre}} 
+                            @if(paciente.dni){
+                                <span>({{paciente.dni}})</span>
+                            }
+                        </mat-option>
+                      }
+                    </mat-autocomplete>
+                </mat-form-field>
+                @if(formPaso1.valid){
+                    <p class="text-secondary"><mat-icon style="vertical-align: sub;">info</mat-icon> Selecciona el orden de los estudios del paciente</p>
+                    <mat-chip-set class="chipset" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+                        @for (f of files; track f) {
+                            <mat-chip class="example-box" cdkDrag>{{f.name}}</mat-chip>
+                        }
+                    </mat-chip-set>
+                }
+            </div>
             <div>
-                <button mat-button matStepperNext>Continuar</button>
+                <button mat-raised-button matStepperNext color="primary"><mat-icon>arrow_forward</mat-icon> Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="conclusionForm" [editable]="true">
-        <form [formGroup]="conclusionForm">
-            <ng-template matStepLabel>Conclusion</ng-template>
-            <mat-form-field>
-                <mat-label>Conclusion</mat-label>
-                <textarea matInput formControlName="conclusion" placeholder="Ex. 1 Main St, New York, NY"></textarea>
-            </mat-form-field>
+    <mat-step [stepControl]="formPaso2" [editable]="true">
+        <form [formGroup]="formPaso2">
+            <ng-template matStepLabel>Conclusión</ng-template>
+            <div class="text-center my-4">
+                <mat-form-field class="w-100">
+                    <mat-label>Conclusión</mat-label>
+                    <textarea matInput formControlName="conclusion" placeholder="Escribe aquí la conclusion del informe"></textarea>
+                </mat-form-field>
+            </div>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-raised-button matStepperPrevious color="warn"><mat-icon>arrow_back</mat-icon> Atrás</button>
+                <button mat-raised-button matStepperNext color="primary"><mat-icon>arrow_forward</mat-icon> Siguiente</button>
             </div>
         </form>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Listo!</ng-template>
-        <p>aca podes visaulizar el pdf</p>
+        <div style="height: 500px" class="p-4">
+            <app-pdf-viewer></app-pdf-viewer>
+        </div>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button matStepperPrevious color="warn"><mat-icon>arrow_back</mat-icon> Atrás</button>
+            <button mat-raised-button color="primary" (click)="stepper.reset()"><mat-icon>check</mat-icon> Confirmar</button>
         </div>
     </mat-step>
 </mat-stepper>
