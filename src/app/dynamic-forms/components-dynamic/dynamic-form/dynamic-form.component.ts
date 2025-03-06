@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, ComponentRef, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import {Component, Input, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { FieldFactoryService } from '../../services/field-factory.service';
 import { FormFieldConfiguration } from '../../interfaces/form-field-configuration';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DynamicFieldComponent } from '../dynamic-field/dynamic-field.component';
@@ -20,12 +19,9 @@ export class DynamicFormComponent {
   
   @Input() form!: FormGroup;
   @Input() formFieldConf!: FormFieldConfiguration[];
-  //@ViewChild('fieldContainer', { read: ViewContainerRef }) fieldContainer!: ViewContainerRef;
-  //fieldsComponents: ComponentRef<DynamicField>[] = [];
+  @ViewChildren(DynamicFieldComponent) fields!: QueryList<DynamicFieldComponent>;
 
-  constructor(private fieldFactory: FieldFactoryService,
-    private cdRef: ChangeDetectorRef
-  ) {
+  constructor() {
     this.form = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
       apellido: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
@@ -55,26 +51,6 @@ export class DynamicFormComponent {
       //fileTypeEnabled?:string[];
       placeholder:'Apellido',
     }]
-  }
-
-  ngAfterViewInit(): void {
-    /*
-    this.formFieldConf.forEach(fconf => {
-      const type = this.fieldFactory.getConcreteComponent(fconf);
-      if(type && this.form){
-        const control = this.form.get(fconf.formControlName);
-        if (control instanceof FormControl) {
-          const nuevoHijo = this.fieldContainer.createComponent(type);
-          nuevoHijo.instance.formFieldConfig = { ...fconf };
-          nuevoHijo.instance.formControl = control;   //<-- mi objetivo es descomentar esta linea sin errores
-          console.log(2)
-          nuevoHijo.changeDetectorRef.detectChanges();
-          this.cdRef.detectChanges();
-        } else {
-          console.warn(`El control ${fconf.formControlName} no es un FormControl.`);
-        }
-      }
-    });*/
   }
 
   submitForm() {
