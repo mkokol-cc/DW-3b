@@ -5,6 +5,7 @@ import { FileSelectorComponent } from './pages-custom/file-selector/file-selecto
 import { FormConclusionComponent } from './pages-custom/form-conclusion/form-conclusion.component';
 import { TableComponent } from './dynamic-forms/components-dynamic/table/table.component';
 import { UploadDocumentoComponent } from './pages-custom/upload-documento/upload-documento.component';
+import { DynamicFormComponent } from './dynamic-forms/components-dynamic/dynamic-form/dynamic-form.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {
         path: 'pdf-viewer',
         loadComponent: () => import('./pages-custom/pdf-viewer/pdf-viewer.component').then(m => m.PdfViewerComponent)
-    }
+    },
+    {path: 'prueba', component: DynamicFormComponent},
 ];

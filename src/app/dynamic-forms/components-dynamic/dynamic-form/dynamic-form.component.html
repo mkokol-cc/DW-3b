@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+    <mat-grid-list cols="4" rowHeight="100px">
+        @for(fconf of formFieldConf; track fconf){
+            <mat-grid-tile [colspan]="fconf.col" [rowspan]="fconf.row">
+                <app-dynamic-field [formControl]="true" [formFieldConfig]="fconf"></app-dynamic-field>
+            </mat-grid-tile>
+        }
+    </mat-grid-list>
+</form>
