@@ -1,11 +1,10 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { FileSelectorComponent } from './pages-custom/file-selector/file-selector.component';
 import { FormConclusionComponent } from './pages-custom/form-conclusion/form-conclusion.component';
 import { TableComponent } from './dynamic-forms/components-dynamic/table/table.component';
 import { UploadDocumentoComponent } from './pages-custom/upload-documento/upload-documento.component';
-import { DynamicFormComponent } from './dynamic-forms/components-dynamic/dynamic-form/dynamic-form.component';
+import { PruebaComponent } from './pages-custom/prueba/prueba.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -20,5 +19,5 @@ export const routes: Routes = [
         path: 'pdf-viewer',
         loadComponent: () => import('./pages-custom/pdf-viewer/pdf-viewer.component').then(m => m.PdfViewerComponent)
     },
-    {path: 'prueba', component: DynamicFormComponent},
+    {path: 'prueba', component: PruebaComponent},
 ];
