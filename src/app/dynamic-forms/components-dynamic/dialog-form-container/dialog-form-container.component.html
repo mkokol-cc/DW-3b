@@ -1,10 +1,7 @@
 <h2 mat-dialog-title>{{data.title}}</h2>
 <mat-dialog-content class="mat-typography dialog-form-content">
-    <app-form [data]="data.instance" [type]="data.type" (isSuccess)="closeDialog($event)"></app-form>
+    <!--<app-form [data]="data.instance" [type]="data.type" (isSuccess)="closeDialog($event)"></app-form>-->
+    @if(form && formFieldConfig){
+      <app-dynamic-form [form]="form" [formFieldConf]="formFieldConfig" (submitEvent)="save($event)"></app-dynamic-form>
+    }
 </mat-dialog-content>
-<!--
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions>
--->

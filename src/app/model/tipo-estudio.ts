@@ -55,7 +55,7 @@ export class TipoEstudio extends Persistable<TipoEstudio> implements FormProvide
     }
     getListOptions(): FormFieldConfiguration[] {
         return [{
-            type:'string',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:4,

@@ -90,7 +90,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
     }
     getListOptions(): FormFieldConfiguration[] {
         return [{
-            type:'string',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:2,
@@ -102,7 +102,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             //fileTypeEnabled?:string[];
             placeholder:'Nombre',
         },{
-            type:'string',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:2,
@@ -114,7 +114,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             //fileTypeEnabled?:string[];
             placeholder:'Apellido',
         },{
-            type:'string',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:2,
@@ -126,7 +126,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             //fileTypeEnabled?:string[];
             placeholder:'Matricula',
         },{
-            type:'number',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:2,
@@ -138,7 +138,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             //fileTypeEnabled?:string[];
             placeholder:'DNI',
         },{
-            type:'email',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:2,
@@ -150,7 +150,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             //fileTypeEnabled?:string[];
             placeholder:'E-Mail',
         },{
-            type:'number',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:2,
@@ -162,7 +162,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             //fileTypeEnabled?:string[];
             placeholder:'Teléfono',
         },{
-            type:'string',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
             //relationToObject?:"many"|"one";//many,one
             //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
             col:4,

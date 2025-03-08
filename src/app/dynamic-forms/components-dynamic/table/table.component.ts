@@ -99,7 +99,11 @@ export class TableComponent{
       dialogRef.afterClosed().subscribe(result => {
         if(result){
           this.formProviderInstance?.delete(id).subscribe(obj=>{
+            console.log("objeto de la eliminacion")
+            console.log(obj)
             this.getAllObjects()
+          },error=>{
+            console.error(error)
           })
         }
         console.log(`Dialog result: ${result}`);

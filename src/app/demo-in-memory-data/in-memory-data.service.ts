@@ -24,10 +24,19 @@ export class InMemoryDataService implements InMemoryDbService {
   }
 
   // Genera un nuevo ID automáticamente si no se proporciona en un POST
+  /*
   genId<T extends { id?: number }>(collection: T[]): number {
     return collection.length > 0
       ? Math.max(...collection.map(item => item.id || 0)) + 1
       : 1;
+  }*/
+
+  // Genera un nuevo ID automáticamente si no se proporciona en un POST
+  genId<T extends { id?: string }>(collection: T[]): string {
+    const maxId = collection.length > 0
+      ? Math.max(...collection.map(item => parseInt(item.id || '0', 10))) + 1
+      : 1;
+    return maxId.toString(); // Convierte el ID a string
   }
   
 }
