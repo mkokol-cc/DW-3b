@@ -16,6 +16,7 @@ import { FilteringComponent } from '../filtering/filtering.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { Usuario } from '../../../model/usuario';
 import { Cliente } from '../../../model/cliente';
+import { Paciente } from '../../../model/paciente';
 
 
 @Component({
@@ -135,6 +136,10 @@ export class TableComponent{
       case 'cliente':
         this.formProviderInstance = new Cliente(this.apiService);
         this.title = "Clientes"
+        break;
+      case 'paciente':
+        this.formProviderInstance = new Paciente(this.apiService);
+        this.title = "Pacientes"
         break;
       default:
         break;

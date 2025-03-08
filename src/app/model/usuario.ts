@@ -76,7 +76,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             correoElectronico: new FormControl(this.correoElectronico, [Validators.required, Validators.email]),
             telefono: new FormControl(this.telefono, [Validators.required, Validators.min(99999999),Validators.max(9999999999999)]),
             password: new FormControl(this.password, [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
-            //tiposEstudio: new FormControl(this.password, [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
+            tiposEstudio: new FormControl( this.tiposEstudio! /*? this.tiposEstudio.map(te => te.id) : []*/, [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
         })
     }
     getCreateGroupForm(): FormGroup {

@@ -1,8 +1,14 @@
 import { Paciente } from "../../model/paciente";
 
+// Función para generar un número aleatorio entre "1" y "7" como string
+function getRandomCliente(): string {
+    return Math.floor(Math.random() * 7 + 1).toString();
+}
+
 export const PACIENTES: any[] = [
     {   
         id: '1', 
+        cliente: getRandomCliente(),
         nombre: 'Juan', 
         apellido: 'Pérez', 
         dni: 30123456, 
@@ -12,6 +18,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '2', 
+        cliente: getRandomCliente(),
         nombre: 'María', 
         apellido: 'Gómez', 
         dni: 35198765, 
@@ -21,6 +28,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '3', 
+        cliente: getRandomCliente(),
         nombre: 'Carlos', 
         apellido: 'López', 
         dni: 28987654, 
@@ -30,6 +38,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '4', 
+        cliente: getRandomCliente(),
         nombre: 'Ana', 
         apellido: 'Martínez', 
         dni: undefined, 
@@ -39,6 +48,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '5', 
+        cliente: getRandomCliente(),
         nombre: 'Luis', 
         apellido: 'Rodríguez', 
         dni: 40123456, 
@@ -48,6 +58,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '6', 
+        cliente: getRandomCliente(),
         nombre: 'Sofía', 
         apellido: 'Díaz', 
         dni: 32165498, 
@@ -57,6 +68,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '7', 
+        cliente: getRandomCliente(),
         nombre: 'Pedro', 
         apellido: 'Sánchez', 
         dni: 27123456, 
@@ -66,6 +78,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '8', 
+        cliente: getRandomCliente(),
         nombre: 'Lucía', 
         apellido: 'Fernández', 
         dni: 39123456, 
@@ -75,6 +88,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '9', 
+        cliente: getRandomCliente(),
         nombre: 'Diego', 
         apellido: 'García', 
         dni: 34198765, 
@@ -84,6 +98,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '10', 
+        cliente: getRandomCliente(),
         nombre: 'Elena', 
         apellido: 'Ruiz', 
         dni: 26123456, 
@@ -93,6 +108,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '11', 
+        cliente: getRandomCliente(),
         nombre: 'Miguel', 
         apellido: 'Torres', 
         dni: 42198765, 
@@ -102,6 +118,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '12', 
+        cliente: getRandomCliente(),
         nombre: 'Clara', 
         apellido: 'Ramírez', 
         dni: undefined, 
@@ -111,6 +128,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '13', 
+        cliente: getRandomCliente(),
         nombre: 'Javier', 
         apellido: 'Moreno', 
         dni: 38123456, 
@@ -120,6 +138,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '14', 
+        cliente: getRandomCliente(),
         nombre: 'Valeria', 
         apellido: 'Ortega', 
         dni: 31165498, 
@@ -129,6 +148,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '15', 
+        cliente: getRandomCliente(),
         nombre: 'Andrés', 
         apellido: 'Castro', 
         dni: 29123456, 
@@ -138,6 +158,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '16', 
+        cliente: getRandomCliente(),
         nombre: 'Paula', 
         apellido: 'Vega', 
         dni: 36198765, 
@@ -147,6 +168,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '17', 
+        cliente: getRandomCliente(),
         nombre: 'Tomás', 
         apellido: 'Herrera', 
         dni: 25123456, 
@@ -156,6 +178,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '18', 
+        cliente: getRandomCliente(),
         nombre: 'Camila', 
         apellido: 'Molina', 
         dni: 43198765, 
@@ -165,6 +188,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '19', 
+        cliente: getRandomCliente(),
         nombre: 'Santiago', 
         apellido: 'Rojas', 
         dni: 37123456, 
@@ -174,6 +198,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '20', 
+        cliente: getRandomCliente(),
         nombre: 'Florencia', 
         apellido: 'Silva', 
         dni: undefined, 
@@ -183,6 +208,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '21', 
+        cliente: getRandomCliente(),
         nombre: 'Matías', 
         apellido: 'Núñez', 
         dni: 33165498, 
@@ -192,6 +218,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '22', 
+        cliente: getRandomCliente(),
         nombre: 'Agustina', 
         apellido: 'Ríos', 
         dni: 28123456, 
@@ -201,6 +228,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '23', 
+        cliente: getRandomCliente(),
         nombre: 'Gonzalo', 
         apellido: 'Paz', 
         dni: 41198765, 
@@ -210,6 +238,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '24', 
+        cliente: getRandomCliente(),
         nombre: 'Rocío', 
         apellido: 'Luna', 
         dni: 24123456, 
@@ -219,6 +248,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '25', 
+        cliente: getRandomCliente(),
         nombre: 'Emiliano', 
         apellido: 'Cruz', 
         dni: 39165498, 
@@ -228,6 +258,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '26', 
+        cliente: getRandomCliente(),
         nombre: 'Julieta', 
         apellido: 'Mendoza', 
         dni: 35123456, 
@@ -237,6 +268,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '27', 
+        cliente: getRandomCliente(),
         nombre: 'Facundo', 
         apellido: 'Aguilar', 
         dni: 32198765, 
@@ -246,6 +278,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '28', 
+        cliente: getRandomCliente(),
         nombre: 'Victoria', 
         apellido: 'Campos', 
         dni: 27165498, 
@@ -255,6 +288,7 @@ export const PACIENTES: any[] = [
     },
     {   
         id: '29', 
+        cliente: getRandomCliente(),
         nombre: 'Lautaro', 
         apellido: 'Ibarra', 
         dni: 44123456, 
@@ -264,11 +298,12 @@ export const PACIENTES: any[] = [
     },
     { 
         id: '30', 
+        cliente: getRandomCliente(),
         nombre: 'Martina', 
         apellido: 'Flores', 
         dni: 30198765, 
         correoElectronico: 'martina.f@hotmail.com', 
         telefono: 1165439876, 
-        password: 'martinaF' 
+        password: 'martinaF'
     }
 ]

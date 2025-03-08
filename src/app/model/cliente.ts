@@ -37,7 +37,8 @@ export class Cliente extends Persistable<Cliente> implements FormProvider{
     }
 
     anyToOption(item: any): OptionElement {
-        throw new Error("Method not implemented.");
+        const data = <Cliente> item;
+        return {value:data.id, label:data.nombre! + " (" + data.cuit! + ")"}
     }
     getListUrl(): unknown {
         throw new Error("Method not implemented.");
