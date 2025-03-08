@@ -43,6 +43,7 @@ export class TableComponent{
   formProviderInstance?: Persistable<any> & FormProvider
   tableListObjects?:any[];
   title?:string;
+  entityName:string = "";
   @ViewChild(PaginationComponent) pagination!: PaginationComponent;
 
   constructor(private router:Router, private route: ActivatedRoute, private apiService:ApiService, public dialog: MatDialog,
@@ -95,7 +96,7 @@ export class TableComponent{
   delete(id?:number|string){
     if(id){
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        data: "Seguro que quieres eliminar el Tipo de Estudio?",
+        data: `Seguro que quieres eliminar el ${this.entity}?`,
       });
       dialogRef.afterClosed().subscribe(result => {
         if(result){
@@ -127,19 +128,23 @@ export class TableComponent{
     switch (entity) {
       case 'tipo-estudio':
         this.formProviderInstance = new TipoEstudio(this.apiService);
-        this.title = "Tipo de Estudio"
+        this.title = "Tipos de Estudio"
+        this.entityName = "Tipo de Estudio"
         break;
       case 'usuario':
         this.formProviderInstance = new Usuario(this.apiService);
         this.title = "Usuarios"
+        this.entityName = "Usuario"
         break;
       case 'cliente':
         this.formProviderInstance = new Cliente(this.apiService);
         this.title = "Clientes"
+        this.entityName = "Cliente"
         break;
       case 'paciente':
         this.formProviderInstance = new Paciente(this.apiService);
         this.title = "Pacientes"
+        this.entityName = "Paciente"
         break;
       default:
         break;
