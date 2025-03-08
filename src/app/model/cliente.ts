@@ -75,52 +75,40 @@ export class Cliente extends Persistable<Cliente> implements FormProvider{
     }
     getListOptions(): FormFieldConfiguration[] {
         return [{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'text',
             col:2,
             row:1,
-            formFieldType:'text',
             formFieldLabel:'Nombre',
             errorMessage:'Ingrese un nombre entre 2 y 20 caracteres',
             formControlName:'nombre',
-            //fileTypeEnabled?:string[];
             placeholder:'Nombre',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'number',
             col:2,
             row:1,
-            formFieldType:'number',
             formFieldLabel:'CUIT',
             errorMessage:'Ingrese un CUIT válido',
             formControlName:'cuit',
-            //fileTypeEnabled?:string[];
             placeholder:'CUIT',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'email',
             col:2,
             row:1,
-            formFieldType:'email',
             formFieldLabel:'E-Mail',
             errorMessage:'Ingrese un e-mail válido',
             formControlName:'correoElectronico',
-            //fileTypeEnabled?:string[];
             placeholder:'E-Mail',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'number',
             col:2,
             row:1,
-            formFieldType:'number',
             formFieldLabel:'Teléfono',
             errorMessage:'Ingrese un teléfono válido',
             formControlName:'telefono',
-            //fileTypeEnabled?:string[];
             placeholder:'Teléfono',
         }]
     }

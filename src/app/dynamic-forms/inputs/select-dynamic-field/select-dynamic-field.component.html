@@ -1,0 +1,17 @@
+<mat-form-field>
+    <mat-label>{{formFieldConfig.formFieldLabel}}</mat-label>
+    @if(formFieldConfig.multipleOptions){
+        <mat-select [formControl]="formControl" multiple>
+            @for (o of getOptions$() | async; track o) {
+                <mat-option [value]="o.value">{{o.label}}</mat-option>
+            }
+        </mat-select>
+    }
+    @else{
+        <mat-select [formControl]="formControl">
+            @for (o of getOptions$() | async; track o) {
+                <mat-option [value]="o.value">{{o.label}}</mat-option>
+            }
+        </mat-select>
+    }
+</mat-form-field>

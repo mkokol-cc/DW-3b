@@ -2,6 +2,7 @@ import { Injectable, Type, EnvironmentInjector, inject } from '@angular/core';
 import { DynamicField } from '../interfaces/dynamic-field-component';
 import { FormFieldConfiguration } from '../interfaces/form-field-configuration';
 import { TextDynamicFieldComponent } from '../inputs/text-dynamic-field/text-dynamic-field.component';
+import { SelectDynamicFieldComponent } from '../inputs/select-dynamic-field/select-dynamic-field.component';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class FieldFactoryService {
   private componentRegistry: { [key: string]: Type<DynamicField> } = {
     text: TextDynamicFieldComponent,
     //date: DatePickerComponent,
-    //select: SelectComponent,
+    select: SelectDynamicFieldComponent,
   };
 
   // Inyección de EnvironmentInjector para crear componentes
@@ -27,7 +28,7 @@ export class FieldFactoryService {
    */
 
   getConcreteComponent(config: FormFieldConfiguration): Type<DynamicField> | null {
-    const componentType = this.componentRegistry[config.type];
+    const componentType = this.componentRegistry[config.formFieldType];
     if (!componentType) {
       console.error(`Tipo de campo desconocido: ${config.type}`);
       return null;

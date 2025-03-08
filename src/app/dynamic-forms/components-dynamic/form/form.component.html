@@ -7,7 +7,7 @@
                 [colspan]="conf.col"
                 [rowspan]="conf.row">
 
-                @if(conf.type == 'string' || conf.type == 'email' || conf.type == 'number'){
+                @if(conf.type == 'email' || conf.type == 'number'){<!--conf.type == 'string' || -->
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>{{ conf.formFieldLabel }}</mat-label>
                         <input matInput formControlName="{{conf.formControlName}}" type="{{conf.formFieldType}}"/>

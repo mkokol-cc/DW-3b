@@ -29,7 +29,8 @@ export class TipoEstudio extends Persistable<TipoEstudio> implements FormProvide
     }
 
     anyToOption(item: any): OptionElement {
-        throw new Error("Method not implemented.");
+        const data = <TipoEstudio> item;
+        return {value:data.id, label:data.nombre!}
     }
     getListUrl(): unknown {
         throw new Error("Method not implemented.");
@@ -55,16 +56,13 @@ export class TipoEstudio extends Persistable<TipoEstudio> implements FormProvide
     }
     getListOptions(): FormFieldConfiguration[] {
         return [{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'text',
             col:4,
             row:1,
-            formFieldType:'text',
             formFieldLabel:'Nombre',
             errorMessage:'Ingrese un nombre entre 2 y 20 caracteres',
             formControlName:'nombre',
-            //fileTypeEnabled?:string[];
             placeholder:'Nombre',
         }]
     }

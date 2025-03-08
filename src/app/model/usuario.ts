@@ -5,6 +5,7 @@ import { OptionElement } from "../dynamic-forms/interfaces/option-element";
 import { Persistable } from "../dynamic-forms/persistable";
 import { ApiService } from "../dynamic-forms/services/api.service";
 import { TipoEstudio } from "./tipo-estudio";
+import { map, Observable } from "rxjs";
 
 export class Usuario extends Persistable<Usuario> implements FormProvider {
 
@@ -75,6 +76,7 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             correoElectronico: new FormControl(this.correoElectronico, [Validators.required, Validators.email]),
             telefono: new FormControl(this.telefono, [Validators.required, Validators.min(99999999),Validators.max(9999999999999)]),
             password: new FormControl(this.password, [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
+            //tiposEstudio: new FormControl(this.password, [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
         })
     }
     getCreateGroupForm(): FormGroup {
@@ -86,96 +88,139 @@ export class Usuario extends Persistable<Usuario> implements FormProvider {
             correoElectronico: new FormControl('', [Validators.required, Validators.email]),
             telefono: new FormControl(null, [Validators.required, Validators.min(99999999),Validators.max(9999999999999)]),
             password: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(20)]),
+            tiposEstudio: new FormControl([], [Validators.required, Validators.minLength(1)]),
         })
     }
     getListOptions(): FormFieldConfiguration[] {
         return [{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'text',
             col:2,
             row:1,
-            formFieldType:'text',
             formFieldLabel:'Nombre',
             errorMessage:'Ingrese un nombre entre 2 y 20 caracteres',
             formControlName:'nombre',
-            //fileTypeEnabled?:string[];
             placeholder:'Nombre',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'text',
             col:2,
             row:1,
-            formFieldType:'text',
             formFieldLabel:'Apellido',
             errorMessage:'Ingrese un apellido entre 2 y 20 caracteres',
             formControlName:'apellido',
-            //fileTypeEnabled?:string[];
             placeholder:'Apellido',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'text',
             col:2,
             row:1,
-            formFieldType:'text',
             formFieldLabel:'Matricula',
             errorMessage:'Ingrese una matricula entre 2 y 20 caracteres',
             formControlName:'matricula',
-            //fileTypeEnabled?:string[];
             placeholder:'Matricula',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'number',
             col:2,
             row:1,
-            formFieldType:'number',
             formFieldLabel:'DNI',
             errorMessage:'Ingrese un DNI válido',
             formControlName:'dni',
-            //fileTypeEnabled?:string[];
             placeholder:'DNI',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'email',
             col:2,
             row:1,
-            formFieldType:'email',
             formFieldLabel:'E-Mail',
             errorMessage:'Ingrese un e-mail válido',
             formControlName:'correoElectronico',
-            //fileTypeEnabled?:string[];
             placeholder:'E-Mail',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'number',
             col:2,
             row:1,
-            formFieldType:'number',
             formFieldLabel:'Teléfono',
             errorMessage:'Ingrese un teléfono válido',
             formControlName:'telefono',
-            //fileTypeEnabled?:string[];
             placeholder:'Teléfono',
         },{
-            type:'text',//date,time,datetime,file,number,string,object,text,telefono,email,boolean
-            //relationToObject?:"many"|"one";//many,one
-            //typeRelationToObject?:"subform"|"select"|"radio";//subform select radio
+            formFieldType:'text',
+            type:'text',
             col:4,
             row:1,
-            formFieldType:'text',
             formFieldLabel:'Contraseña',
             errorMessage:'Ingrese una contraseña entre 2 y 20 caracteres',
             formControlName:'password',
-            //fileTypeEnabled?:string[];
             placeholder:'Contraseña',
+        },{
+            formFieldType:'select',
+            col:4,
+            row:1,
+            options: this.getOptionsForTipoDeEstudio(),
+            multipleOptions: true,
+            formFieldLabel:'Tipo de Estudio',
+            errorMessage:'Selecciona algún tipo de estudio',
+            formControlName:'tiposEstudio',
+            placeholder:'Seleccione',
         }]
     }
     getUrl(): string {
         throw new Error("Method not implemented.");
     }
+
+
+    getOptionsForTipoDeEstudio():Observable<OptionElement[]>{
+        const t = new TipoEstudio(this.getApiService());
+        return t.getAll().pipe(
+            map(obj => obj.map((item: any) => t.anyToOption(item)))
+        );
+    }
 }
+
+
+
+/**
+ * 
+ *     //Se refiere al tipo de FormField que va a ser
+    formFieldType:string;
+    
+    //A BORRAR
+    relationToObject?:"many"|"one";//many,one
+    
+    //A BORRAR
+    typeRelationToObject?:"subform"|"select"|"autocomplete";// |"radio"| subform select radio
+    
+    //A BORRAR
+    instanceToObject?:Persistable<any> & FormProvider;
+    
+    //Opciones que se pueden seleccionar si el tipo de formField lo necesita (autocomplete, select, radio, checklist)
+    options?:OptionElement[];
+    
+    //En los casos seleccionables, se usa para especificar que permite multiples opciones
+    multipleOptions?:boolean;
+    
+    //Dato para acomodar los formularios en un Grid (4 columnas con rows de 100px)
+    col?:number;
+    row?:number;
+    
+    //Se refiere a los tipos nativos de los inputs de HTML, aplicable solo a los casos de FormFieldType=Text
+    type?:"date"|"time"|"datetime"|"file"|"number"|"object"|"text"|"telefono"|"email"|"boolean";//date,time,datetime,file,number,string,object,text,telefono,email,boolean
+    
+    //Label que se mostrara en el input
+    formFieldLabel?:string;
+    
+    //Mensaje de error genérico para cualquier error en los validators del FormControl
+    errorMessage?:string;
+    
+    //FormControl al que esta asociado esta configuración
+    formControlName:string;
+    
+    //NOSE A QUE SE REFIERE
+    fileTypeEnabled?:string[];
+    
+    //Placeholder del input
+    placeholder?:string;
+ */
