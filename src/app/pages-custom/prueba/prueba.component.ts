@@ -3,7 +3,6 @@ import { DynamicFormComponent } from '../../dynamic-forms/components-dynamic/dyn
 import { ApiService } from '../../dynamic-forms/services/api.service';
 import { FormProvider } from '../../dynamic-forms/interfaces/form-provider';
 import { Persistable } from '../../dynamic-forms/persistable';
-import { Usuario } from '../../model/usuario';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormFieldConfiguration } from '../../dynamic-forms/interfaces/form-field-configuration';
 import { Observable } from 'rxjs/internal/Observable';
@@ -41,12 +40,13 @@ export class PruebaComponent {
       errorMessage:'Selecciona a que cliente pertenece',
       formControlName:'cliente',
       placeholder:'Seleccione',
-  }]
+    }]
   }
   getOptionsForCliente(): Observable<OptionElement[]> {
     return this.instance.getAll().pipe(
       map(obj => obj.map((item: any) => this.instance.anyToOption(item)))
     );
   }
+
 
 }

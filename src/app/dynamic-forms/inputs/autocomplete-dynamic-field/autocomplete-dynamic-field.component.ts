@@ -25,7 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class AutocompleteDynamicFieldComponent implements DynamicField, OnInit {
   formControl!: FormControl<any>;
-  formFieldConfig!: FormFieldConfiguration;
+  _formFieldConfig!: FormFieldConfiguration;
   getData(): FormControl | null {
     throw new Error('Method not implemented.');
   }
@@ -36,6 +36,19 @@ export class AutocompleteDynamicFieldComponent implements DynamicField, OnInit {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  set formFieldConfig(value:FormFieldConfiguration){
+    this._formFieldConfig = value;
+    this.loadData();
+  }
+
+  get formFieldConfig(){
+    return this._formFieldConfig
+  }
+
+  loadData(){
     this.getOptions$().subscribe((options) => {
       this.options = options;
       this.filteredOptions = options;
@@ -68,6 +81,7 @@ export class AutocompleteDynamicFieldComponent implements DynamicField, OnInit {
   // Al seleccionar una opción, guardamos el ID
   onOptionSelected(event: any) {
     const selectedOption: OptionElement = event.option.value;
+    //console.log(selectedOption)
     this.formControl.setValue(selectedOption.value); // Guardamos el ID
   }
 }

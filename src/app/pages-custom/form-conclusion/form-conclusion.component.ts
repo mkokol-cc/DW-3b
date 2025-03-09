@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {CdkDragDrop, moveItemInArray, CdkDrag, CdkDropList} from '@angular/cdk/drag-drop';
 import { MatChipsModule } from '@angular/material/chips';
 import { PdfViewerComponent } from '../pdf-viewer/pdf-viewer.component';
+import { AutocompleteDynamicFieldComponent } from '../../dynamic-forms/inputs/autocomplete-dynamic-field/autocomplete-dynamic-field.component';
+import { OptionElement } from '../../dynamic-forms/interfaces/option-element';
 
 @Component({
   selector: 'app-form-conclusion',
@@ -40,13 +42,14 @@ import { PdfViewerComponent } from '../pdf-viewer/pdf-viewer.component';
 
     MatChipsModule, CdkDropList, CdkDrag,
 
-    PdfViewerComponent
+    PdfViewerComponent,
 
   ],
   templateUrl: './form-conclusion.component.html',
   styleUrl: './form-conclusion.component.scss'
 })
 export class FormConclusionComponent implements OnInit {
+
   formPaso1 = this._formBuilder.group({
     cliente: [null, Validators.required],
     paciente: [null, Validators.required],
@@ -57,22 +60,40 @@ export class FormConclusionComponent implements OnInit {
 
   clientes:Cliente[] = []
   pacientes:Paciente[] = []
+  pacientesFiltrados:Paciente[] = []
 
   constructor(private _formBuilder: FormBuilder, private service:ApiService) {
+    this.getClientes()
+    this.getPacientes()
+  }
+
+  getClientes(){
     this.service.list('api/clientes',{}).subscribe(obj=>{
-      this.clientes = obj.map((item: any) => new Cliente(service,item))
+      this.clientes = obj.map((item: any) => new Cliente(this.service,item))
       console.log(this.clientes)
     })
+  }
+  getPacientes(){
     this.service.list('api/pacientes',{}).subscribe(obj=>{
-      this.pacientes = obj.map((item: any) => new Paciente(service,item))
+      this.pacientes = obj.map((item: any) => new Paciente(this.service,item))
+      this.pacientesFiltrados = [];
       console.log(this.pacientes)
     })
+  }
+  filterPacientes(idCliente?:string){
+    this.pacientesFiltrados = idCliente ? this.pacientes.filter(paciente => paciente.cliente!.toString() === idCliente) : [];
+    console.log(this.pacientesFiltrados)
   }
 
   myControl = new FormControl('');
   filteredOptions!: Observable<Paciente[]>;
 
   ngOnInit() {
+    this.formPaso1.get('cliente')!.valueChanges.subscribe(value=>{
+      const v = value ? <Cliente>value : null
+      const idCliente = v?.getId()
+      this.filterPacientes(idCliente ? idCliente.toString() : '')
+    })
     this.filteredOptions = this.formPaso1.get('paciente')!.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
@@ -81,7 +102,7 @@ export class FormConclusionComponent implements OnInit {
 
   private _filter(value: string): Paciente[] {
     const filterValue = value.toLowerCase();
-    return this.pacientes.filter(p => 
+    return this.pacientesFiltrados.filter(p => 
       p.dni?.toString().toLowerCase().includes(filterValue) ||
       p.nombre?.toLowerCase().includes(filterValue) ||
       p.apellido?.toLowerCase().includes(filterValue)
