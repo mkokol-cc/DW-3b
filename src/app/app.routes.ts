@@ -8,16 +8,17 @@ import { PruebaComponent } from './pages-custom/prueba/prueba.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
-    {path: '', component: DashboardComponent, children:
+    {path: '', component: DashboardComponent, children: 
         [
-            {path: 'documentos', component: UploadDocumentoComponent},
-            {path: 'conclusion', component: FormConclusionComponent},
-            {path: 'gestion/:entity', component: TableComponent},
-        ],
-    },
+            { path: '', redirectTo: 'gestion/cliente', pathMatch: 'full' },  // Redirección a 'gestion/cliente'
+            { path: 'documentos', component: UploadDocumentoComponent },
+            { path: 'conclusion', component: FormConclusionComponent },
+            { path: 'gestion/:entity', component: TableComponent },
+        ]
+    },/*
     {
         path: 'pdf-viewer',
         loadComponent: () => import('./pages-custom/pdf-viewer/pdf-viewer.component').then(m => m.PdfViewerComponent)
     },
-    {path: 'prueba', component: PruebaComponent},
+    {path: 'prueba', component: PruebaComponent},*/
 ];

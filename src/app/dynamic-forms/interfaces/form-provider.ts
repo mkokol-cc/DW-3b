@@ -7,15 +7,15 @@ export interface FormProvider {
     getId():string|number
 
     anyToOption(item: any): OptionElement;
-    getListUrl(): unknown;
-    getSubformGroupForm(): FormGroup<any>;
+    //getListUrl(): unknown;
+    //getSubformGroupForm(): FormGroup<any>;
     toTableData(): any;
     toSelectData(): any;
-    toSubformTableData(): any;
+    //toSubformTableData(): any;
     getEditGroupForm(): FormGroup;
     getCreateGroupForm():FormGroup;
     getListOptions():FormFieldConfiguration[];
-    getUrl():string;
+    //getUrl():string;
 
     getInstancedObjects(item:any):any;
   }

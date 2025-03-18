@@ -10,7 +10,8 @@ export interface DynamicField {
 
     /**
      * Devuelve el FormControl si es válido, o null si es inválido.
+     * Pero no sirve ya que los FormsModule trae solo los FormControls
      */
-    getData(): FormControl | null;
+    //getData(): FormControl | null;
 
 }

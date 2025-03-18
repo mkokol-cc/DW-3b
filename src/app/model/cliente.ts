@@ -40,12 +40,6 @@ export class Cliente extends Persistable<Cliente> implements FormProvider{
         const data = <Cliente> item;
         return {value:data.id, label:data.nombre! + " (" + data.cuit! + ")"}
     }
-    getListUrl(): unknown {
-        throw new Error("Method not implemented.");
-    }
-    getSubformGroupForm(): FormGroup<any> {
-        throw new Error("Method not implemented.");
-    }
     toTableData() {
         return {
             id:this.id ,
@@ -54,9 +48,6 @@ export class Cliente extends Persistable<Cliente> implements FormProvider{
             telefono: this.telefono,
             email: this.correoElectronico
         }
-    }
-    toSubformTableData() {
-        throw new Error("Method not implemented.");
     }
     getEditGroupForm(): FormGroup {
         return new FormGroup({
@@ -112,8 +103,5 @@ export class Cliente extends Persistable<Cliente> implements FormProvider{
             formControlName:'telefono',
             placeholder:'Teléfono',
         }]
-    }
-    getUrl(): string {
-        throw new Error("Method not implemented.");
     }
 }
